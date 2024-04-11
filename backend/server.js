@@ -2,9 +2,12 @@ import express from 'express'
 import cors from 'cors'
 import products from './data/products.js'
 import dotenv from 'dotenv'
+import connectDB from './config/db.js'
 
 //env config
 dotenv.config()
+
+connectDB()
 
 const port = process.env.PORT || 5000
 
