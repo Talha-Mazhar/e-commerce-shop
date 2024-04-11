@@ -584,6 +584,10 @@ main {
   min-height: 80vh;
 }
 
+.rating {
+  display: flex;
+}
+
 .rating span {
   margin: 0.1rem;
 }

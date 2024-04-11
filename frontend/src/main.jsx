@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import HomeScreen from './screens/HomeScreen.jsx'
 import NotFound from './screens/NotFound.jsx'
 import ErrorPage from './screens/ErrorPage.jsx'
+import ProductScreen from './screens/ProductScreen.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
@@ -16,6 +17,11 @@ ReactDOM.createRoot(document.getElementById('root')).render(
                     <Route
                         index
                         element={<HomeScreen />}
+                        errorElement={<ErrorPage />}
+                    />
+                    <Route
+                        path='/product/:id'
+                        element={<ProductScreen />}
                         errorElement={<ErrorPage />}
                     />
                 </Route>
