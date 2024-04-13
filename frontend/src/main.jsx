@@ -1,36 +1,15 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
+import { Provider } from 'react-redux'
+import store from './store/store'
 import './assets/styles/bootstrap.custom.css'
 import './assets/styles/index.css'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import HomeScreen from './screens/HomeScreen.jsx'
-import NotFound from './screens/NotFound.jsx'
-import ErrorPage from './screens/ErrorPage.jsx'
-import ProductScreen from './screens/ProductScreen.jsx'
+import AllRoutes from './routes'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
-        <Router>
-            <Routes>
-                <Route path='/' element={<App />} errorElement={<ErrorPage />}>
-                    <Route
-                        index
-                        element={<HomeScreen />}
-                        errorElement={<ErrorPage />}
-                    />
-                    <Route
-                        path='/product/:id'
-                        element={<ProductScreen />}
-                        errorElement={<ErrorPage />}
-                    />
-                </Route>
-                <Route
-                    path='*'
-                    element={<NotFound />}
-                    errorElement={<ErrorPage />}
-                />
-            </Routes>
-        </Router>
+        <Provider store={store}>
+            <AllRoutes />
+        </Provider>
     </React.StrictMode>
 )
