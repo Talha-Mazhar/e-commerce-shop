@@ -1,4 +1,3 @@
-import { query } from 'express'
 import { PRODUCTS_URL } from '../../constants'
 import { apiSlice } from '../apiSlice'
 
