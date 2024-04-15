@@ -1,4 +1,3 @@
-import React from 'react'
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = localStorage.getItem('cart')
@@ -22,7 +21,7 @@ const cartSlice = createSlice({
                     x._id === existItem._id ? item : x
                 )
             } else {
-                state.cartItems = [...state.cartItems]
+                state.cartItems = [...state.cartItems, item]
             }
 
             //Calculate Items Price
