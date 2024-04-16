@@ -4,6 +4,7 @@ import NotFound from '../screens/NotFound.jsx'
 import ErrorPage from '../screens/ErrorPage.jsx'
 import ProductScreen from '../screens/ProductScreen.jsx'
 import App from '../App'
+import CartScreen from '../screens/CartScreen.jsx'
 
 const AllRoutes = () => {
     return (
@@ -18,6 +19,11 @@ const AllRoutes = () => {
                     <Route
                         path='/product/:id'
                         element={<ProductScreen />}
+                        errorElement={<ErrorPage />}
+                    />
+                    <Route
+                        path='/cart'
+                        element={<CartScreen />}
                         errorElement={<ErrorPage />}
                     />
                 </Route>
