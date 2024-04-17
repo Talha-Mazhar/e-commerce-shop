@@ -559,6 +559,11 @@ video {
   margin-bottom: 0.75rem;
 }
 
+.my-2 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
 .ms-auto {
   margin-inline-start: auto;
 }
