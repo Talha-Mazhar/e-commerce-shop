@@ -8,6 +8,7 @@ import CartScreen from '../screens/CartScreen.jsx'
 import LoginScreen from '../screens/LoginScreen.jsx'
 import RegisterScreen from '../screens/RegisterScreen.jsx'
 import ShippingScreen from '../screens/ShippingScreen.jsx'
+import PrivateRoute from '../components/PrivateRoute.jsx'
 
 const AllRoutes = () => {
     return (
@@ -40,11 +41,13 @@ const AllRoutes = () => {
                         errorElement={<ErrorPage />}
                     />
 
-                    <Route
-                        path='/shipping'
-                        element={<ShippingScreen />}
-                        errorElement={<ErrorPage />}
-                    />
+                    <Route path='' element={<PrivateRoute />}>
+                        <Route
+                            path='/shipping'
+                            element={<ShippingScreen />}
+                            errorElement={<ErrorPage />}
+                        />
+                    </Route>
                 </Route>
                 <Route
                     path='*'
