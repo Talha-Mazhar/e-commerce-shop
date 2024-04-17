@@ -10,10 +10,11 @@ const addOrderItems = asyncHandler(async (req, res) => {
         shippingAddress,
         paymentMethod,
         itemsPrice,
-        raxPRice,
+        taxPrice,
         shippingPrice,
         totalPrice,
     } = req.body
+    console.log(req.body)
 
     if (orderItems && orderItems.length === 0) {
         res.status(400)
@@ -29,7 +30,7 @@ const addOrderItems = asyncHandler(async (req, res) => {
             shippingAddress,
             paymentMethod,
             itemsPrice,
-            raxPRice,
+            taxPrice,
             shippingPrice,
             totalPrice,
         })

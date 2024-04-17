@@ -11,21 +11,24 @@ import { notFound, errorHandler } from './middleware/errorMiddleware.js'
 //env config
 dotenv.config()
 
-connectDB()
-
-const port = process.env.PORT || 5000
-
+// Initialize Express application
 const app = express()
 
-//Body Parser Middleware
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
+// Connect to MongoDB
+connectDB()
 
-//Cookie parser middleware
-app.use(cookieParser())
+// Define port
+const port = process.env.PORT || 5000
 
-app.use(cors())
+// Middleware
+app.use(express.json()) // Parse JSON bodies
+app.use(express.urlencoded({ extended: true })) // Parse URL-encoded bodies
+app.use(cookieParser()) // Parse cookies
 
+// Allow requests from localhost:3000 during development
+app.use(cors({ origin: 'http://localhost:3000', credentials: true }))
+
+// Routes
 app.get('/', (req, res) => {
     res.send('API is running...')
 })
@@ -34,9 +37,11 @@ app.use('/api/products', productRoutes)
 app.use('/api/users', userRoutes)
 app.use('/api/orders', orderRoutes)
 
+// Error handling middleware
 app.use(notFound)
 app.use(errorHandler)
 
+// Start server
 app.listen(port, () => {
     console.log(`Server running on port ${port}`)
 })
