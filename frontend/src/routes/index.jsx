@@ -6,6 +6,7 @@ import ProductScreen from '../screens/ProductScreen.jsx'
 import App from '../App'
 import CartScreen from '../screens/CartScreen.jsx'
 import LoginScreen from '../screens/LoginScreen.jsx'
+import RegisterScreen from '../screens/RegisterScreen.jsx'
 
 const AllRoutes = () => {
     return (
@@ -30,6 +31,11 @@ const AllRoutes = () => {
                     <Route
                         path='/login'
                         element={<LoginScreen />}
+                        errorElement={<ErrorPage />}
+                    />
+                    <Route
+                        path='/register'
+                        element={<RegisterScreen />}
                         errorElement={<ErrorPage />}
                     />
                 </Route>
