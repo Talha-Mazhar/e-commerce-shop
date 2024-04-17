@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-import { Button, Form } from 'react-bootstrap'
+import { Button, Form, Row, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import FormContainer from '../components/FormContainer'
 
@@ -17,7 +17,7 @@ const LoginScreen = () => {
             <h1>Sign In</h1>
             <Form onSubmit={submitHandler}>
                 <Form.Group controlId='email' className='my-3'>
-                    <Form.label>Email Address</Form.label>
+                    <Form.Label>Email Address</Form.Label>
                     <Form.Control
                         type='email'
                         placeholder='Enter email'
@@ -27,12 +27,12 @@ const LoginScreen = () => {
                 </Form.Group>
 
                 <Form.Group controlId='password' className='my-3'>
-                    <Form.label>Password Address</Form.label>
+                    <Form.Label>Password</Form.Label>
                     <Form.Control
                         type='password'
                         placeholder='Enter password'
                         value={password}
-                        onChange={e => setPasword(e.target.value)}
+                        onChange={e => setPassword(e.target.value)}
                     ></Form.Control>
                 </Form.Group>
 
