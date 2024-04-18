@@ -1,7 +1,7 @@
 import React from 'react'
 import { useEffect } from 'react'
 import { Col, Image, ListGroup, Row, Card, Button } from 'react-bootstrap'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import CheckoutSteps from '../components/CheckoutSteps'
 import Messages from '../components/Messages'
@@ -12,7 +12,7 @@ import { toast } from 'react-toastify'
 const PlaceOrderScreen = () => {
     const navigate = useNavigate()
     const cart = useSelector(state => state.cart)
-
+    const dispatch = useDispatch()
     const [createOrder, { isLoading, error }] = useCreateOrderMutation()
 
     useEffect(() => {
@@ -34,10 +34,12 @@ const PlaceOrderScreen = () => {
                 taxPrice: cart.taxPrice,
                 totalPrice: cart.totalPrice,
             }).unwrap()
+
             dispatch(clearCartItems())
             navigate(`/order/${res._id}`)
         } catch (err) {
-            toast.error(error)
+            console.log(err)
+            toast.error(err)
         }
     }
 
@@ -83,7 +85,7 @@ const PlaceOrderScreen = () => {
                                                 </Col>
                                                 <Col>
                                                     <Link
-                                                        to={`/product/${item.product}`}
+                                                        to={`/product/${item._id}`}
                                                     >
                                                         {item.name}
                                                     </Link>
