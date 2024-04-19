@@ -12,6 +12,7 @@ import PrivateRoute from '../components/PrivateRoute.jsx'
 import PaymentScreen from '../screens/PaymentScreen.jsx'
 import PlaceOrderScreen from '../screens/PlaceOrderScreen.jsx'
 import OrderScreen from '../screens/OrderScreen.jsx'
+import ProfileScreen from '../screens/ProfileScreen.jsx'
 
 const AllRoutes = () => {
     return (
@@ -63,6 +64,11 @@ const AllRoutes = () => {
                         <Route
                             path='/order/:id'
                             element={<OrderScreen />}
+                            errorElement={<ErrorPage />}
+                        />
+                        <Route
+                            path='/profile'
+                            element={<ProfileScreen />}
                             errorElement={<ErrorPage />}
                         />
                     </Route>

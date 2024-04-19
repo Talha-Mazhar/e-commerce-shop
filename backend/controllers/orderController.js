@@ -93,11 +93,12 @@ const updateOrderToDelivered = asyncHandler(async (req, res) => {
     res.send('Update order to Delivered')
 })
 
-//@desc Get All orders
-//@route GET /api/orders
-//@access Private/Admin
+// @desc    Get all orders
+// @route   GET /api/orders
+// @access  Private/Admin
 const getOrders = asyncHandler(async (req, res) => {
-    res.send('get orders')
+    const orders = await Order.find({}).populate('user', 'id name')
+    res.json(orders)
 })
 
 export {
