@@ -13,7 +13,8 @@ import PaymentScreen from '../screens/PaymentScreen.jsx'
 import PlaceOrderScreen from '../screens/PlaceOrderScreen.jsx'
 import OrderScreen from '../screens/OrderScreen.jsx'
 import ProfileScreen from '../screens/ProfileScreen.jsx'
-
+import AdminRoute from '../components/AdminRoute'
+import OrderListScreen from '../screens/admin/OrderListScreen.jsx'
 const AllRoutes = () => {
     return (
         <Router>
@@ -72,7 +73,15 @@ const AllRoutes = () => {
                             errorElement={<ErrorPage />}
                         />
                     </Route>
+                    <Route path='' element={<AdminRoute />}>
+                        <Route
+                            path='/admin/orderlist'
+                            element={<OrderListScreen />}
+                            errorElement={<ErrorPage />}
+                        />
+                    </Route>
                 </Route>
+
                 <Route
                     path='*'
                     element={<NotFound />}
