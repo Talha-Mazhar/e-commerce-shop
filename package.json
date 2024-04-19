@@ -9,7 +9,7 @@
         "server": "nodemon backend/server.js",
         "client": "npm run dev --prefix frontend",
         "clientCss": "npm run watch --prefix frontend",
-        "devs": "concurrently \"npm run server\" \"npm run client\" \"npm run clientCss\"",
+        "devs": "concurrently \"npm run server\" \"npm run client\"",
         "data:import": "node backend/seeder.js",
         "data:destroy": "node backend/seeder.js -d"
     },
