@@ -15,6 +15,7 @@ import OrderScreen from '../screens/OrderScreen.jsx'
 import ProfileScreen from '../screens/ProfileScreen.jsx'
 import AdminRoute from '../components/AdminRoute'
 import OrderListScreen from '../screens/admin/OrderListScreen.jsx'
+import ProductListScreen from '../screens/admin/ProductListScreen.jsx'
 const AllRoutes = () => {
     return (
         <Router>
@@ -77,6 +78,11 @@ const AllRoutes = () => {
                         <Route
                             path='/admin/orderlist'
                             element={<OrderListScreen />}
+                            errorElement={<ErrorPage />}
+                        />
+                        <Route
+                            path='/admin/productlist'
+                            element={<ProductListScreen />}
                             errorElement={<ErrorPage />}
                         />
                     </Route>
