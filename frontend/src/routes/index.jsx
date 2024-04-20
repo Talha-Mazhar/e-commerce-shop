@@ -18,6 +18,8 @@ import OrderListScreen from '../screens/admin/OrderListScreen.jsx'
 import ProductListScreen from '../screens/admin/ProductListScreen.jsx'
 import ProductEditScreen from '../screens/admin/ProductEditScreen.jsx'
 import UserListScreen from '../screens/admin/UserListScreen.jsx'
+import UserEditScreen from '../screens/admin/UserEditScreen.jsx'
+
 const AllRoutes = () => {
     return (
         <Router>
@@ -95,6 +97,11 @@ const AllRoutes = () => {
                         <Route
                             path='/admin/userlist'
                             element={<UserListScreen />}
+                            errorElement={<ErrorPage />}
+                        />
+                        <Route
+                            path='/admin/user/:id/edit'
+                            element={<UserEditScreen />}
                             errorElement={<ErrorPage />}
                         />
                     </Route>
