@@ -100,13 +100,13 @@ const createProductReview = asyncHandler(async (req, res) => {
 
         const review = {
             name: req.user.name,
-            rating: Numer(rating),
+            rating: Number(rating),
             comment,
             user: req.user._id,
         }
 
-        product.review.push(review)
-        product.numReviews = product.review.length
+        product.reviews.push(review)
+        product.numReviews = product.reviews.length
 
         product.rating =
             product.reviews.reduce((acc, review) => acc + review.rating, 0) /
