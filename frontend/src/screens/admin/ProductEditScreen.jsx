@@ -4,6 +4,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import {
     useGetProductDetailsQuery,
     useUpdateProductMutation,
+    useUploadProductImageMutation,
 } from '../../store/slices/product/productApiSlice'
 import { Form, Button } from 'react-bootstrap'
 import Messages from '../../components/Messages'
@@ -31,6 +32,9 @@ const ProductEditScreen = () => {
 
     const [updateProduct, { isLoading: loadingUpdate }] =
         useUpdateProductMutation()
+
+    const [uploadProductImage, { isLoading: loadingUpload }] =
+        useUploadProductImageMutation()
 
     const navigate = useNavigate()
 
@@ -73,6 +77,19 @@ const ProductEditScreen = () => {
         }
     }
 
+    const uploadFileHandler = async e => {
+        const formData = new FormData()
+        formData.append('image', e.target.files[0])
+
+        try {
+            const res = await uploadProductImage(formData).unwrap()
+            toast.success(res.message)
+            setImage(res.image)
+        } catch (err) {
+            toast.error(err?.data?.message || err.error)
+        }
+    }
+
     return (
         <>
             <Link to='/admin/productlist' className='btn btn-light my-3'>
@@ -108,7 +125,7 @@ const ProductEditScreen = () => {
                             ></Form.Control>
                         </Form.Group>
 
-                        {/* <Form.Group controlId='image'>
+                        <Form.Group controlId='image'>
                             <Form.Label>Image</Form.Label>
                             <Form.Control
                                 type='text'
@@ -122,7 +139,7 @@ const ProductEditScreen = () => {
                                 type='file'
                             ></Form.Control>
                             {loadingUpload && <Loader />}
-                        </Form.Group> */}
+                        </Form.Group>
 
                         <Form.Group controlId='brand'>
                             <Form.Label>Brand</Form.Label>
