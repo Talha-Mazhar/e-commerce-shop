@@ -31,7 +31,17 @@ const AllRoutes = () => {
                         errorElement={<ErrorPage />}
                     />
                     <Route
+                        path='/search/:keyword'
+                        element={<HomeScreen />}
+                        errorElement={<ErrorPage />}
+                    />
+                    <Route
                         path='/page/:pageNumber'
+                        element={<HomeScreen />}
+                        errorElement={<ErrorPage />}
+                    />
+                    <Route
+                        path='/search/:keyword/page/:pageNumber'
                         element={<HomeScreen />}
                         errorElement={<ErrorPage />}
                     />
@@ -55,7 +65,6 @@ const AllRoutes = () => {
                         element={<RegisterScreen />}
                         errorElement={<ErrorPage />}
                     />
-
                     <Route path='' element={<PrivateRoute />}>
                         <Route
                             path='/shipping'
