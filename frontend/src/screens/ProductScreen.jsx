@@ -261,11 +261,11 @@ const ProductScreen = () => {
                                             </Button>
                                         </Form>
                                     ) : (
-                                        <Message>
+                                        <Messages>
                                             Please
                                             <Link to='/login'>sign in</Link> to
                                             write a review
-                                        </Message>
+                                        </Messages>
                                     )}
                                 </ListGroup.Item>
                             </ListGroup>
