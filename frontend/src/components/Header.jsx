@@ -9,6 +9,7 @@ import { logout } from '../store/slices/users/authSlice'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import SearchBox from './SearchBox'
+import { resetCart } from '../store/slices/cart/cartSlice'
 
 const Header = () => {
     const { cartItems } = useSelector(state => state.cart)
@@ -23,6 +24,7 @@ const Header = () => {
         try {
             await logoutApiCall().unwrap()
             dispatch(logout())
+            dispatch(resetCart())
             navigate('/login')
         } catch (err) {
             toast.error(err?.data?.message || err.error)

@@ -67,9 +67,7 @@ const ProductListScreen = () => {
             {isLoading ? (
                 <Loader />
             ) : error ? (
-                <Messages variant='danger'>
-                    {error?.data?.message || error?.message}
-                </Messages>
+                <Messages variant='danger'>{error?.data?.message}</Messages>
             ) : (
                 <>
                     <Table
