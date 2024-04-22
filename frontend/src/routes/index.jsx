@@ -31,6 +31,11 @@ const AllRoutes = () => {
                         errorElement={<ErrorPage />}
                     />
                     <Route
+                        path='/page/:pageNumber'
+                        element={<HomeScreen />}
+                        errorElement={<ErrorPage />}
+                    />
+                    <Route
                         path='/product/:id'
                         element={<ProductScreen />}
                         errorElement={<ErrorPage />}
@@ -86,6 +91,11 @@ const AllRoutes = () => {
                         />
                         <Route
                             path='/admin/productlist'
+                            element={<ProductListScreen />}
+                            errorElement={<ErrorPage />}
+                        />
+                        <Route
+                            path='/admin/productlist/:pageNumber'
                             element={<ProductListScreen />}
                             errorElement={<ErrorPage />}
                         />

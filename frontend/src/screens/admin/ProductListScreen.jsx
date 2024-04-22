@@ -1,4 +1,5 @@
 import React from 'react'
+import { useParams } from 'react-router-dom'
 import { Button, Col, Row, Table } from 'react-bootstrap'
 import {
     useCreateProductMutation,
@@ -10,8 +11,14 @@ import Messages from '../../components/Messages'
 import Loader from '../../components/Loader'
 import { LinkContainer } from 'react-router-bootstrap'
 import { toast } from 'react-toastify'
+import Paginate from '../../components/Paginate'
+
 const ProductListScreen = () => {
-    const { data: products, isLoading, error, refetch } = useGetProductsQuery()
+    const { pageNumber } = useParams()
+
+    const { data, isLoading, error, refetch } = useGetProductsQuery({
+        pageNumber,
+    })
 
     const [createProduct, { isLoading: loadingCreate }] =
         useCreateProductMutation()
@@ -25,7 +32,7 @@ const ProductListScreen = () => {
                 await createProduct()
                 refetch()
             } catch (err) {
-                toast.error(err?.data?.messsage || err.message)
+                toast.error(err?.data?.messsage || err?.message)
             }
         }
     }
@@ -60,7 +67,9 @@ const ProductListScreen = () => {
             {isLoading ? (
                 <Loader />
             ) : error ? (
-                <Messages variant='danger'>{error.data.message}</Messages>
+                <Messages variant='danger'>
+                    {error?.data?.message || error?.message}
+                </Messages>
             ) : (
                 <>
                     <Table
@@ -81,7 +90,7 @@ const ProductListScreen = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {products.map(product => (
+                            {data.products.map(product => (
                                 <tr key={product._id}>
                                     <td>{product._id}</td>
                                     <td>{product.name}</td>
@@ -115,6 +124,11 @@ const ProductListScreen = () => {
                             ))}
                         </tbody>
                     </Table>
+                    <Paginate
+                        pages={data.pages}
+                        page={data.page}
+                        isAdmin={true}
+                    />
                 </>
             )}
         </>
