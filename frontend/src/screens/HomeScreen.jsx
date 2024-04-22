@@ -7,6 +7,7 @@ import Product from '../components/Product'
 import { useGetProductsQuery } from '../store/slices/product/productApiSlice'
 import Paginate from '../components/Paginate'
 import ProductCarousel from '../components/ProductCarousel'
+
 const HomeScreen = () => {
     const { pageNumber, keyword } = useParams()
 
