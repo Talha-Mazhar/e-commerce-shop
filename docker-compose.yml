@@ -1,0 +1,57 @@
+version: "3.8"
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    volumes:
+      - ./frontend/nginx.conf:/etc/nginx/conf.d/default.conf
+    ports:
+    networks:
+      - proshop_network
+    depends_on:
+      - backend
+
+  backen:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    command: npm run server
+    ports:
+      - "5000:5000"
+    environment:
+      - NODE_ENV=development
+      - MONGO_URI=mongodb+srv://talha_mazhar:0321@node-js.uv5gzav.mongodb.net/proShop
+      - JWT_SECRET=abc123
+      - PAYPAL_CLIENT_ID = AeUXdNtyRFtQVjfYd2ESCix3zAQul6KVx0GsOoy8LN9CX9c2owIi6r4m52QNOGiKXQW1-U4GZeDDioba
+      - PAGINATION_LIMIT = 5
+      - PAYPAL_APP_SECRET=EKWNEIqkTJ3uaXPobBC7RPtyzziWILcvNhifod3UNgUeKR__-JoNBWM_rx-dhJajgmjJVEowzudby1Ez
+      - PAYPAL_API_URL=https://api-m.sandbox.paypal.com
+    volumes:
+      - ./backend:/usr/src/app
+      - ./uploads:/app/uploads
+    networks:
+      - proshop_network
+
+  nginx:
+    image: nginx:alpine
+    container_name: nginx
+    ports:
+      - "443:443"
+      - "8080:80"
+    volumes:
+      - ./frontend/nginx.conf:etc/nginx/conf.d/default.conf
+      - /etc/letsencrypt:/etc/letsencrypt
+      - /var/log/nginx:/var/log/nginx
+      - ./frontend/dist:/usr/share/nginx/html
+    depends_on:
+      - frontend
+      - backend
+    networks:
+      - proshop_network
+
+  networks:
+    proshop_network:
+      driver: bridge
+
+  volumes:

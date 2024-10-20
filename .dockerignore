@@ -1,0 +1,13 @@
+# Ignore node_modules
+node_modules
+frontend/node_modules
+
+#  Ignore .git directories
+.git
+frontend/.git
+
+# Ignore dockerfile in all directories
+Dockerfile
+
+# Ignore docker-compose.yml in all directories
+docker-compose.yml
