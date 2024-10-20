@@ -1,0 +1,31 @@
+name: Auto Deploy ProShop to AWS
+
+on:
+  push:
+    branches:
+      - main #Triggers deployment on push to the main branch
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-keys: ${{ secrets.PROSHOP_SECRET_SSH }}
+
+      - name: Add AWS Droplet to known hosts
+        run: |
+          ssh-keyscan ..aws-instance-ip >> ~/.ssh/known_hosts
+
+      - name: Deploy to AWS Droplet
+        run: |
+          ssh root@aws-ip << 'EOF'
+            cd ~/backend
+            git pull origin main
+            docker-compose down
+            docker-compose up -d --build
+          EOF
