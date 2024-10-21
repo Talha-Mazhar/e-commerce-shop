@@ -15,16 +15,18 @@ jobs:
       - name: Set up SSH
         uses: webfactory/ssh-agent@v0.5.3
         with:
-          ssh-private-keys: ${{ secrets.PROSHOP_SECRET_SSH }}
+          ssh-private-keys: ${{ secrets.PROSHOP_EC2_SSH }}
 
       - name: Add AWS Droplet to known hosts
+        # Use the host secret here
+        # ssh-keyscan ..aws-instance-ip >> ~/.ssh/known_hosts
         run: |
-          ssh-keyscan ..aws-instance-ip >> ~/.ssh/known_hosts
+          ssh-keyscan -H ${{ secrets.PROSHOP_EC2_HOST }} >> ~/.ssh/known_hosts
 
       - name: Deploy to AWS Droplet
         run: |
           ssh root@aws-ip << 'EOF'
-            cd ~/backend
+            cd ~/e-commerce-shop
             git pull origin main
             docker-compose down
             docker-compose up -d --build
