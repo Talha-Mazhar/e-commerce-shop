@@ -49,5 +49,3 @@ services:
   networks:
     proshop_network:
       driver: bridge
-
-  volumes:
