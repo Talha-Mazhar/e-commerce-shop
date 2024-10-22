@@ -16,7 +16,7 @@ RUN npm install
 COPY . .
 
 #build the vite applciation
-RUN app install vite -g
+RUN npm install vite -g
 
 #Create Build
 RUN npm run build
