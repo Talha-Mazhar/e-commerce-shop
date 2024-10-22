@@ -15,7 +15,7 @@ jobs:
       - name: Set up SSH
         uses: webfactory/ssh-agent@v0.5.3
         with:
-          ssh-private-keys: ${{ secrets.PROSHOP_EC2_SSH }}
+          ssh-private-key: ${{ secrets.PROSHOP_EC2_SSH }}
 
       - name: Add AWS Droplet to known hosts
         # Use the host secret here
