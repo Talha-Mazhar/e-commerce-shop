@@ -30,7 +30,7 @@ app.use(cookieParser()); // Parse cookies
 // Allow requests from localhost:3000 during development
 app.use(
   cors({
-    origin: ["http://35.183.5.83:5000", "http://localhost:3000"],
+    origin: ["http://35.183.5.83:3000", "http://localhost:3000"],
     credentials: true,
   })
 );
