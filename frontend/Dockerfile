@@ -7,7 +7,7 @@ FROM node:18 AS build
 WORKDIR /app
 
 #Copy package.json and package files
-COPY package.json ./
+COPY package*.json ./
 
 #Install dependencies node_modules
 RUN npm install
