@@ -10,7 +10,7 @@ WORKDIR /app
 COPY package.json ./
 
 #Install dependencies node_modules
-RUN npm Install
+RUN npm install
 
 # copy entire code to container
 COPY . .
