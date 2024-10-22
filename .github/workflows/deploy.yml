@@ -25,7 +25,7 @@ jobs:
 
       - name: Deploy to AWS Droplet
         run: |
-          ssh root@35.183.5.83 << 'EOF'
+          ssh ubuntu@35.183.5.83 << 'EOF'
             cd ~/e-commerce-shop
             git pull origin main
             docker-compose down
