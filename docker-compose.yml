@@ -19,14 +19,9 @@ services:
     command: npm run server
     ports:
       - "5000:5000"
-    environment:
-      - NODE_ENV=development
-      - MONGO_URI=mongodb+srv://talha_mazhar:0321@node-js.uv5gzav.mongodb.net/proShop
-      - JWT_SECRET=abc123
-      - PAYPAL_CLIENT_ID = AeUXdNtyRFtQVjfYd2ESCix3zAQul6KVx0GsOoy8LN9CX9c2owIi6r4m52QNOGiKXQW1-U4GZeDDioba
-      - PAGINATION_LIMIT = 5
-      - PAYPAL_APP_SECRET=EKWNEIqkTJ3uaXPobBC7RPtyzziWILcvNhifod3UNgUeKR__-JoNBWM_rx-dhJajgmjJVEowzudby1Ez
-      - PAYPAL_API_URL=https://api-m.sandbox.paypal.com
+    env_file:
+      - ./.env
+
     volumes:
       - ./backend:/usr/src/app
       - ./uploads:/app/uploads
