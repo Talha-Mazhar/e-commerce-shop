@@ -13,7 +13,7 @@ services:
     depends_on:
       - backend
 
-  backen:
+  backend:
     build:
       context: ./backend
       dockerfile: Dockerfile
