@@ -15,7 +15,7 @@ services:
 
   backend:
     build:
-      context: ./backend
+      context: ./
       dockerfile: Dockerfile
     command: npm run server
     ports:
