@@ -46,6 +46,6 @@ services:
     networks:
       - proshop_network
 
-  networks:
-    proshop_network:
-      driver: bridge
+networks:
+  proshop_network:
+    driver: bridge
